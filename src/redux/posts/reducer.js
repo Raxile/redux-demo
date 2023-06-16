@@ -1,4 +1,11 @@
-import { GET_POST, GET_POST_ERROR, GET_POST_SUCCESS } from "./actionTypes";
+import {
+  DELETE_POST,
+  DELETE_POST_ERROR,
+  DELETE_POST_SUCCESS,
+  GET_POST,
+  GET_POST_ERROR,
+  GET_POST_SUCCESS,
+} from "./actionTypes";
 
 const initialState = {
   posts: [],
@@ -6,7 +13,7 @@ const initialState = {
   loading: false,
 };
 
-const getPostReducer = (state = initialState, action) => {
+export const getPostReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_POST:
       state = { ...state, loading: true };
@@ -17,10 +24,28 @@ const getPostReducer = (state = initialState, action) => {
     case GET_POST_ERROR:
       state = { ...state, loading: false, error: action?.payload?.message };
       break;
+    case DELETE_POST:
+      state = { ...state, loading: true, deletedId: action?.payload };
+      break;
+    case DELETE_POST_SUCCESS:
+      const { posts, deletedId } = state;
+      const remainigPosts = posts.filter((post) => post.id !== deletedId);
+      state = {
+        ...state,
+        loading: false,
+        posts: remainigPosts,
+      };
+      delete state.deletedId;
+      break;
+    case DELETE_POST_ERROR:
+      state = {
+        ...state,
+        loading: false,
+        error: action?.payload?.message,
+      };
+      break;
     default:
       state = { ...state };
   }
   return state;
 };
-
-export default getPostReducer;

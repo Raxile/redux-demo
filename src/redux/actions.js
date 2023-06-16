@@ -1,1 +1,1 @@
-export { getPost, getPostError, getPostSuccess } from "./posts/action";
+export * from "./posts/action";

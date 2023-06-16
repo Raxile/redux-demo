@@ -1,20 +1,35 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getPost } from "../redux/actions";
+import { connect, useDispatch } from "react-redux";
+import { deletePost, getPost } from "../redux/actions";
 import Card from "../components/Card";
 import Style from "./Post.module.css";
 
 const Post = ({ getPost, posts }) => {
-  console.log(posts);
+  const dispatch = useDispatch();
   useEffect(() => {
-    getPost();
-  });
+    dispatch(getPost());
+  }, [getPost, dispatch]);
+
+  const deleteBtnHandler = (postId) => {
+    dispatch(deletePost(postId));
+  };
   return (
-    <div className={Style.postContainer}>
-      {posts.map((p) => (
-        <Card key={p.id} id={p.id} title={p.title} body={p.body} />
-      ))}
-    </div>
+    <>
+      <div className={Style.addBtnContainer}>
+        <button className={Style.addBtn}>Add Post</button>
+      </div>
+      <div className={Style.postContainer}>
+        {posts.map((p) => (
+          <Card
+            key={p.id}
+            id={p.id}
+            title={p.title}
+            body={p.body}
+            deleteHandler={deleteBtnHandler}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
