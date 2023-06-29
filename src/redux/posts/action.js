@@ -1,4 +1,7 @@
 import {
+  ADD_POST,
+  ADD_POST_ERROR,
+  ADD_POST_SUCCESS,
   DELETE_POST,
   DELETE_POST_ERROR,
   DELETE_POST_SUCCESS,
@@ -33,5 +36,21 @@ export const deletePostSuccess = (response) => ({
 
 export const deletePostError = (response) => ({
   type: DELETE_POST_ERROR,
+  payload: response,
+});
+
+export const addPost = (value, cb) => {
+  return {
+    type: ADD_POST,
+    payload: { value, cb },
+  };
+};
+
+export const addPostSuccess = (response) => ({
+  type: ADD_POST_SUCCESS,
+  payload: response,
+});
+export const addPostError = (response) => ({
+  type: ADD_POST_ERROR,
   payload: response,
 });

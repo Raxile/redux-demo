@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
-import { deletePost, getPost } from "../redux/actions";
-import Card from "../components/Card";
+import { deletePost, getPost } from "../../redux/actions";
+import Card from "../../components/Card";
 import Style from "./Post.module.css";
+import PostForm from "./PostForm";
 
 const Post = ({ getPost, posts }) => {
   const dispatch = useDispatch();
@@ -15,9 +16,7 @@ const Post = ({ getPost, posts }) => {
   };
   return (
     <>
-      <div className={Style.addBtnContainer}>
-        <button className={Style.addBtn}>Add Post</button>
-      </div>
+      <PostForm Style={Style} />
       <div className={Style.postContainer}>
         {posts.map((p) => (
           <Card
@@ -37,7 +36,6 @@ const mapStateToProps = (state) => {
   const {
     getPostReducer: { posts },
   } = state;
-
   return { posts };
 };
 

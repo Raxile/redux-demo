@@ -1,0 +1,73 @@
+.postContainer {
+  padding: 10px;
+  gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.addBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addBtn {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  width: 125px;
+  margin: 30px 30px 0px 0px;
+}
+
+.feilds {
+  padding: 4px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgb(237, 237, 237);
+  color: black;
+  border: 1px solid rgb(174, 174, 174);
+  margin-top: 4px;
+}
+.feilds:active,
+.feilds:focus-visible,
+.feilds:focus,
+.feilds:hover {
+  outline: none;
+}
+
+.btn {
+  border-radius: 15px;
+  margin: 10px 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 800;
+  min-height: 40px;
+  outline: 0;
+  padding: 4px 4px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  transition: all ease-in-out 300ms;
+}
+.btn_cancel {
+  background: linear-gradient(#f12711, #f5af19);
+  border: 1px solid linear-gradient(#f12711, #f5af19);
+  color: #ffffff;
+}
+
+.btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+.btn:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.btn_confirm {
+  background: linear-gradient(#16a085, #f4d03f);
+  border: 1px solid linear-gradient(#16a085, #f4d03f);
+  color: #ffffff;
+}

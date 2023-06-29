@@ -1,4 +1,7 @@
 import {
+  ADD_POST,
+  ADD_POST_ERROR,
+  ADD_POST_SUCCESS,
   DELETE_POST,
   DELETE_POST_ERROR,
   DELETE_POST_SUCCESS,
@@ -42,6 +45,23 @@ export const getPostReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action?.payload?.message,
+      };
+      break;
+    case ADD_POST:
+      state = { ...state, loading: true };
+      break;
+    case ADD_POST_ERROR:
+      state = {
+        ...state,
+        loading: false,
+        error: action?.payload?.message,
+      };
+      break;
+    case ADD_POST_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+        posts: [...state.posts, action.payload.data],
       };
       break;
     default:
