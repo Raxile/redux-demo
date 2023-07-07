@@ -8,6 +8,9 @@ import {
   GET_POST,
   GET_POST_ERROR,
   GET_POST_SUCCESS,
+  UPDATE_POST,
+  UPDATE_POST_ERROR,
+  UPDATE_POST_SUCCESS,
 } from "./actionTypes";
 
 const initialState = {
@@ -63,6 +66,20 @@ export const getPostReducer = (state = initialState, action) => {
         loading: false,
         posts: [...state.posts, action.payload.data],
       };
+      break;
+    case UPDATE_POST:
+      state = { ...state, loading: true };
+      break;
+    case UPDATE_POST_SUCCESS:
+      const updatedPosts = state.posts.map((post) => {
+        if (post.id === action.payload.data.id)
+          return { ...post, ...action.payload.data };
+        else return post;
+      });
+      state = { ...state, loading: false, posts: updatedPosts };
+      break;
+    case UPDATE_POST_ERROR:
+      state = { ...state, loading: false, error: action?.payload?.message };
       break;
     default:
       state = { ...state };

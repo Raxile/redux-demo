@@ -7,6 +7,9 @@ export const DELETE_POST_ERROR = "DELETE_POST_ERROR";
 export const ADD_POST = "ADD_POST";
 export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
 export const ADD_POST_ERROR = "ADD_POST_ERROR";
+export const UPDATE_POST = "UPDATE_POST";
+export const UPDATE_POST_SUCCESS = "UPDATE_POST_SUCCESS";
+export const UPDATE_POST_ERROR = "UPDATE_POST_ERROR";
 
 export const POSTS = "/posts";
 export const SPECIFIC_POST = "/posts?userId=";

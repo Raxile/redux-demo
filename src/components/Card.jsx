@@ -1,6 +1,13 @@
 import React from "react";
 
-const Card = ({ id, title, body, deleteHandler }) => {
+const Card = ({
+  id = "",
+  title = "",
+  body = "",
+  userId = "",
+  deleteHandler = () => {},
+  updateHandler = () => {},
+}) => {
   return (
     <div className="card" style={{ width: "18rem" }}>
       <div className="card-body">
@@ -17,7 +24,12 @@ const Card = ({ id, title, body, deleteHandler }) => {
           >
             Delete
           </button>
-          <button className="btn btn-info">Update</button>
+          <button
+            className="btn btn-info"
+            onClick={() => updateHandler(id, title, body, userId)}
+          >
+            Update
+          </button>
         </div>
       </div>
     </div>

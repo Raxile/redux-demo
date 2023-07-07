@@ -8,6 +8,9 @@ import {
   GET_POST,
   GET_POST_ERROR,
   GET_POST_SUCCESS,
+  UPDATE_POST,
+  UPDATE_POST_ERROR,
+  UPDATE_POST_SUCCESS,
 } from "./actionTypes";
 
 export const getPost = () => {
@@ -54,3 +57,21 @@ export const addPostError = (response) => ({
   type: ADD_POST_ERROR,
   payload: response,
 });
+export const updatePost = (value, cb) => {
+  return {
+    type: UPDATE_POST,
+    payload: { value, cb },
+  };
+};
+export const updatePostSuccess = (response) => {
+  return {
+    type: UPDATE_POST_SUCCESS,
+    payload: response,
+  };
+};
+export const updatePostError = (response) => {
+  return {
+    type: UPDATE_POST_ERROR,
+    payload: response,
+  };
+};

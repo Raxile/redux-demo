@@ -1,5 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { callAddPost, callDeletePost, callGetPost } from "./https";
+import {
+  callAddPost,
+  callDeletePost,
+  callGetPost,
+  callUpdatePost,
+} from "./https";
 import {
   addPostError,
   addPostSuccess,
@@ -7,8 +12,10 @@ import {
   deletePostSuccess,
   getPostError,
   getPostSuccess,
+  updatePostError,
+  updatePostSuccess,
 } from "./action";
-import { ADD_POST, DELETE_POST, GET_POST } from "./actionTypes";
+import { ADD_POST, DELETE_POST, GET_POST, UPDATE_POST } from "./actionTypes";
 
 function* GetPostSaga() {
   try {
@@ -49,9 +56,25 @@ function* AddPostSaga(action) {
     cb();
   }
 }
+function* updatePostSaga(action) {
+  const { value, cb } = action.payload;
+  try {
+    const response = yield call(callUpdatePost, value);
+    if (response?.status) {
+      yield put(updatePostSuccess(response));
+    } else {
+      yield put(updatePostError(response));
+    }
+    cb();
+  } catch (error) {
+    yield put(updatePostError(error));
+    cb();
+  }
+}
 
 export default function* rootPostSaga() {
   yield takeEvery(GET_POST, GetPostSaga);
   yield takeEvery(DELETE_POST, DeletePostSaga);
   yield takeEvery(ADD_POST, AddPostSaga);
+  yield takeEvery(UPDATE_POST, updatePostSaga);
 }
