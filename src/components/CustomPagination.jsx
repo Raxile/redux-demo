@@ -12,7 +12,7 @@ const CustomPagination = ({
     totalPages.push(i);
   }
   return (
-    <div className="d-flex justify-content-center align-items-center">
+    <div className="d-flex justify-content-center align-items-center mb-2">
       <button
         onClick={() => setCurrentPage(currentPage - 1)}
         disabled={currentPage === 1}
