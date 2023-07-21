@@ -35,7 +35,6 @@ const PostForm = ({
             initialValues={postFormInitialValue}
             validationSchema={postFormValidation}
             onSubmit={(values) => {
-              console.log(values);
               const data = { ...values, userId: userId };
               if (updateForm) {
                 dispatch(

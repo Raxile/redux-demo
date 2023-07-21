@@ -4,10 +4,19 @@ import { deletePost, getPost } from "../../redux/actions";
 import Card from "../../components/Card";
 import Style from "./Post.module.css";
 import PostForm from "./PostForm";
+import CustomPagination from "../../components/CustomPagination";
 
-const Post = ({ getPost, posts }) => {
+const postPerPage = 10;
+
+const Post = ({ getPost, posts, loading }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [updatePost, setupdatePost] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  //Pagination Logic
+  const remainingPost = posts.slice(
+    (currentPage - 1) * postPerPage,
+    currentPage * postPerPage
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPost());
@@ -49,7 +58,7 @@ const Post = ({ getPost, posts }) => {
         />
       )}
       <div className={Style.postContainer}>
-        {posts.map((p) => (
+        {remainingPost.map((p) => (
           <Card
             key={p.id}
             id={p.id}
@@ -61,15 +70,21 @@ const Post = ({ getPost, posts }) => {
           />
         ))}
       </div>
+      <CustomPagination
+        totalElements={posts.length}
+        postPerPage={postPerPage}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 };
 
 const mapStateToProps = (state) => {
   const {
-    getPostReducer: { posts },
+    getPostReducer: { posts, loading },
   } = state;
-  return { posts };
+  return { posts, loading };
 };
 
 const mapActionToProps = () => {

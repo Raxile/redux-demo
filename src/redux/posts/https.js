@@ -9,7 +9,6 @@ export const callGetPost = async () => {
   }
 };
 export const callDeletePost = async (postId) => {
-  console.log("delete Api Call", postId);
   try {
     const res = await del(POSTS + "/" + postId);
     return res;

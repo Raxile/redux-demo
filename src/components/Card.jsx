@@ -9,13 +9,18 @@ const Card = ({
   updateHandler = () => {},
 }) => {
   return (
-    <div className="card" style={{ width: "18rem" }}>
-      <div className="card-body">
+    <div className="card mb-2" style={{ width: "18rem", height: "20rem" }}>
+      <div className="card-body position-relative">
         <h5 className="card-title">
           {id} {title}
         </h5>
-        <p className="card-text">{body}</p>
-        <div className="d-flex justify-content-between">
+        <p className="card-text" style={{ height: "9rem", overflow: "hidden" }}>
+          {body}
+        </p>
+        <div
+          className="d-flex justify-content-center position-absolute"
+          style={{ bottom: "20px", gap: "40px" }}
+        >
           <button
             className="btn btn-danger"
             onClick={() => {
